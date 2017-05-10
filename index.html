@@ -5,7 +5,6 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script type="text/javascript">
     var accessToken = "dafc86bb648b4deca941ac934deda6e2",
-      subscriptionKey = "4c62f0fa-adf8-4ec0-ba8b-098271ca3361",
       baseUrl = "https://api.api.ai/v1/",
       $speechInput,
       $recBtn,
@@ -90,14 +89,13 @@
       var text = $speechInput.val();
       $.ajax({
         type: "POST",
-        url: baseUrl + "query/",
+        url: baseUrl + "query",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         headers: {
-          "Authorization": "Bearer " + accessToken,
-          "ocp-apim-subscription-key": subscriptionKey
+          "Authorization": "Bearer " + accessToken
         },
-        data: JSON.stringify({q: text, lang: "en"}),
+        data: JSON.stringify({query: text, lang: "en", sessionId: "yaydevdiner"}),
 
         success: function(data) {
           prepareResponse(data);
